@@ -6,7 +6,7 @@ class ManageTest extends \OAuthApiTestCase
 
     public function testManageReturnsValue()
     {
-        $this->assertNotEmpty($this->client->getApis());
+        $this->assertNotEmpty($this->getClient()->getApis());
     }
 
 }

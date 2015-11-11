@@ -16,10 +16,29 @@ class OAuthApiTestCase extends PHPUnit_Framework_TestCase
 	public function setUp()
 	{
         parent::setUp();
-		$this->_client = new \Keboola\OAuthApi\Client(array(
+		$this->setClient(new \Keboola\OAuthApi\Client(array(
 			'url' => OAUTH_API_URL,
             'token' => STORAGE_API_TOKEN
-		));
+		)));
 	}
+
+    /**
+     * @return \Keboola\OAuthApi\Client
+     */
+    public function getClient()
+    {
+        return $this->client;
+    }
+
+    /**
+     * @param \Keboola\OAuthApi\Client $client
+     * @return $this
+     */
+    public function setClient($client)
+    {
+        $this->client = $client;
+
+        return $this;
+    }
 
 }
