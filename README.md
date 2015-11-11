@@ -1,5 +1,7 @@
 # Keboola OAuth API PHP Client
 [![Latest Stable Version](https://poser.pugx.org/keboola/oauth-api-php-client/v/stable.svg)](https://packagist.org/packages/keboola/oauth-api-php-client)
+[![Code Climate](https://codeclimate.com/github/keboola/oauth-api-php-client/badges/gpa.svg)](https://codeclimate.com/github/keboola/oauth-api-php-client)
+[![Test Coverage](https://codeclimate.com/github/keboola/oauth-api-php-client/badges/coverage.svg)](https://codeclimate.com/github/keboola/oauth-api-php-client/coverage)
 [![Build Status](https://travis-ci.org/keboola/oauth-api-php-client.svg?branch=master)](https://travis-ci.org/keboola/oauth-api-php-client)
 
 Simple PHP wrapper library for [Keboola OAuth API](http://docs.oauth9.apiary.io/)
