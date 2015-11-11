@@ -1,0 +1,19 @@
+{
+    "name": "keboola/oauth-api-php-client",
+    "description": "Keboola OAuth API PHP CLient",
+   	"homepage": "http://keboola.com",
+   	"license": "MIT",
+    "require": {
+        "guzzlehttp/guzzle": "~6.0"
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "~5.0"
+    },
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-0": {
+            "Keboola\\OAuthApi": "src/"
+        }
+    }
+}
