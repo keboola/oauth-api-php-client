@@ -17,3 +17,7 @@ after_success:
 
 notifications:
   slack: keboola:i7BEU5gYU7Z0DdYTIsFsT7SI
+
+addons:
+    code_climate:
+        repo_token: a1b44fc05b8357a53d8363fa7563cad4f83189da1889ac5cc83764fdd59e8393
