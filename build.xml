@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="api-tests" default="build">
+
+    <property name="oauth-api-url" value="your_token"/>
+    <property name="storage-api-token" value="your_token"/>
+
+    <target name="build" depends="prepare,api-tests-ci"/>
+
+    <target name="prepare" description="Prepare for build">
+        <exec executable="/usr/local/bin/composer">
+            <arg value="install" />
+        </exec>
+    </target>
+
+    <target name="api-tests-ci" depends="prepare" description="Run unit tests with PHPUnit">
+        <exec executable="phpunit" failonerror="true">
+            <env key="STORAGE_API_TOKEN" value="${storage-api-token}"/>
+            <env key="OAUTH_API_URL" value="${oauth-api-url}"/>
+            <arg value="--configuration"/>
+            <arg path="phpunit.xml.dist"/>
+        </exec>
+    </target>
+</project>
