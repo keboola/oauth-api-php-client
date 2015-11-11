@@ -1,6 +1,9 @@
 <?php
 namespace Keboola\OAuthApi;
 
+use GuzzleHttp\Exception\RequestException;
+use Psr\Http\Message\ResponseInterface;
+
 class Client
 {
 
