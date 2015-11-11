@@ -29,22 +29,22 @@ class Client
 
 
     /**
-   	 * Clients accept an array of constructor parameters.
-   	 *
-   	 * Here's an example of creating a client using an URI template for the
-   	 * client's base_url and an array of default request options to apply
-   	 * to each request:
-   	 *
-   	 *     $client = new Client([
-   	 *         'url' => 'https://syrup.keboola.com/oauth'
-   	 *         'token' => 'your_sapi_token',
-   	 *     ]);
-   	 *
-   	 * @param array $config Client configuration settings
-   	 *     - token: (required) Storage API token
-   	 *     - url: (optional) OAuth API URL
-   	 *     - userAgent: custom user agent
-   	 */
+     * Clients accept an array of constructor parameters.
+     *
+     * Here's an example of creating a client using an URI template for the
+     * client's base_url and an array of default request options to apply
+     * to each request:
+     *
+     *     $client = new Client([
+     *         'url' => 'https://syrup.keboola.com/oauth'
+     *         'token' => 'your_sapi_token',
+     *     ]);
+     *
+     * @param array $config Client configuration settings
+     *     - token: (required) Storage API token
+     *     - url: (optional) OAuth API URL
+     *     - userAgent: custom user agent
+     */
     public function __construct($config)
     {
         if (isset($config['url'])) {
@@ -98,39 +98,39 @@ class Client
      * @throws MaintenanceException
      */
     protected function request($method, $url, $options = array())
-   	{
-   		$requestOptions = array_merge($options, [
-   			'headers' => [
-   				'X-StorageApi-Token' => $this->getToken(),
-   				'Accept-Encoding' => 'gzip',
-   				'User-Agent' => $this->getUserAgent(),
-   			]
-   		]);
-   		try {
-   			/**
-   			 * @var ResponseInterface $response
-   			 */
-   			$response = $this->client->request($method, $url, $requestOptions);
-   		} catch (RequestException $e) {
-   			$response = $e->getResponse();
-   			$body = $response ? json_decode((string) $response->getBody(), true) : array();
-   			if ($response && $response->getStatusCode() == 503) {
-   				throw new MaintenanceException(isset($body["reason"]) ? $body['reason'] : 'Maintenance', $response && $response->hasHeader('Retry-After') ? (string) $response->getHeader('Retry-After')[0] : null, $body);
-   			}
-   			throw new ClientException(
-   				isset($body['error']) ? $body['error'] : $e->getMessage(),
-   				$response ? $response->getStatusCode() : $e->getCode(),
-   				$e,
-   				isset($body['code']) ? $body['code'] : "",
-   				$body
-   			);
-   		}
+    {
+        $requestOptions = array_merge($options, [
+            'headers' => [
+                'X-StorageApi-Token' => $this->getToken(),
+                'Accept-Encoding' => 'gzip',
+                'User-Agent' => $this->getUserAgent(),
+            ]
+        ]);
+        try {
+            /**
+             * @var ResponseInterface $response
+             */
+            $response = $this->client->request($method, $url, $requestOptions);
+        } catch (RequestException $e) {
+            $response = $e->getResponse();
+            $body = $response ? json_decode((string) $response->getBody(), true) : array();
+            if ($response && $response->getStatusCode() == 503) {
+                throw new MaintenanceException(isset($body["reason"]) ? $body['reason'] : 'Maintenance', $response && $response->hasHeader('Retry-After') ? (string) $response->getHeader('Retry-After')[0] : null, $body);
+            }
+            throw new ClientException(
+                isset($body['error']) ? $body['error'] : $e->getMessage(),
+                $response ? $response->getStatusCode() : $e->getCode(),
+                $e,
+                isset($body['code']) ? $body['code'] : "",
+                $body
+            );
+        }
 
-   		if ($response->hasHeader('Content-Type') && $response->getHeader('Content-Type')[0] == 'application/json') {
-   			return json_decode((string) $response->getBody(), true);
-   		}
-   		return (string) $response->getBody();
-   	}
+        if ($response->hasHeader('Content-Type') && $response->getHeader('Content-Type')[0] == 'application/json') {
+            return json_decode((string) $response->getBody(), true);
+        }
+        return (string) $response->getBody();
+    }
 
 
     /**
