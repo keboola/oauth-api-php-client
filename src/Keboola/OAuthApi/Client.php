@@ -78,6 +78,18 @@ class Client
     }
 
     /**
+     * @param $api
+     * @param $id
+     * @return mixed|string
+     * @throws ClientException
+     * @throws MaintenanceException
+     */
+    public function getCredentials($api, $id)
+    {
+        return $this->request('GET', $this->getApiUrl() . "/credentials/{$api}/{$id}");
+    }
+
+    /**
      * @param $method
      * @param $url
      * @param array $options
