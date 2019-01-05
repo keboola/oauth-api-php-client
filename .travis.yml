@@ -14,10 +14,3 @@ script:
 after_success:
   - ./vendor/bin/test-reporter --stdout > codeclimate.json
   - "curl -X POST -d @codeclimate.json -H 'Content-Type: application/json' -H 'User-Agent: Code Climate (PHP Test Reporter v0.1.1)' https://codeclimate.com/test_reports"
-
-notifications:
-  slack: keboola:i7BEU5gYU7Z0DdYTIsFsT7SI
-
-addons:
-    code_climate:
-        repo_token: a1b44fc05b8357a53d8363fa7563cad4f83189da1889ac5cc83764fdd59e8393
